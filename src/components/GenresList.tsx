@@ -1,14 +1,17 @@
 import React from "react";
 import useGames from "../hooks/useGames";
+import { List, ListItem, Text } from "@chakra-ui/react";
 
 const GenresList = () => {
   const { data: games, error, isLoading } = useGames();
   return (
-    <ul>
+    <List>
       {games.map((game) => (
-        <li>{game.genre}</li>
+        <ListItem paddingY="5px">
+          <Text fontSize="lg">{game.genre}</Text>
+        </ListItem>
       ))}
-    </ul>
+    </List>
   );
 };
 
