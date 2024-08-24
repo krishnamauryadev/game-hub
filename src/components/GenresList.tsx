@@ -2,7 +2,7 @@ import React from "react";
 import useGames from "../hooks/useGames";
 
 const GenresList = () => {
-  const { games, error, isLoading } = useGames();
+  const { data: games, error, isLoading } = useGames();
   return (
     <ul>
       {games.map((game) => (
