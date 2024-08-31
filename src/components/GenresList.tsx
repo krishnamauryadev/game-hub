@@ -9,18 +9,21 @@ interface Props {
 
 const GenresList = ({ genre, onSelectGenre }: Props) => {
   const { data: games, error, isLoading } = useGames();
+  const uniqueGenresSet = new Set(games.map((game) => game.genre));
+  const uniqueGenresArray = Array.from(uniqueGenresSet);
+
   if (error) return null;
   if (isLoading) return <Spinner />;
   return (
     <List>
-      {games.map((game) => (
-        <ListItem paddingY="5px" key={game.id}>
+      {uniqueGenresArray.map((genre) => (
+        <ListItem paddingY="5px" key={genre}>
           <Button
             fontSize="lg"
             variant="link"
-            onClick={() => onSelectGenre(game.genre)}
+            onClick={() => onSelectGenre(genre)}
           >
-            {game.genre}
+            {genre}
           </Button>
         </ListItem>
       ))}
