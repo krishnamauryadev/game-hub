@@ -13,10 +13,11 @@ const PlatformIconList = ({ platforms }: Props) => {
     "PC (Windows)": FaWindows,
     "Web Browser": IoMdBrowsers,
   };
+
   return (
     <HStack marginY={1}>
       {platforms.map((platform) => (
-        <Icon as={iconMap[platform]} color="gray.500" />
+        <Icon as={iconMap[platform]} color="gray.500" key={platform} />
       ))}
     </HStack>
   );

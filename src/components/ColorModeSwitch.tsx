@@ -3,7 +3,6 @@ import React from "react";
 
 const ColorModeSwitch = () => {
   const { toggleColorMode, colorMode } = useColorMode();
-  console.log(colorMode);
   return (
     <HStack>
       <Switch

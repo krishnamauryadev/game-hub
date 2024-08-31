@@ -8,5 +8,10 @@ export interface Game {
   genre: string;
 }
 
-const useGames = () => useData<Game>("/games");
+const useGames = (selectedGenre?: String) =>
+  useData<Game>(
+    "/games",
+    { params: selectedGenre ? { category: selectedGenre } : "" },
+    [selectedGenre]
+  );
 export default useGames;
