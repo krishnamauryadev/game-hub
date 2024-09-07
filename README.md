@@ -3,7 +3,7 @@ Welcome to the Game Showcase Project! This repository provides a link to our app
 
 Access the App
 For Demo You can access the app right away by clicking the link below:
-https://game-5x7wqzkng-krishna-mauryas-projects-c40dc432.vercel.app
+https://game-hub-three-navy.vercel.app/
 
 Play the Game Showcase App
 
