@@ -5,8 +5,8 @@ import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
 
 interface Props {
-  selectedGenre: String;
-  selectedPlatform: String;
+  selectedGenre: number | undefined;
+  selectedPlatform: number | undefined;
 }
 
 const GameGrid = ({ selectedGenre, selectedPlatform }: Props) => {

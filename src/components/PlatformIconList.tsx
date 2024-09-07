@@ -1,23 +1,40 @@
-import { FaWindows } from "react-icons/fa";
-import { IoMdBrowsers } from "react-icons/io";
 import { HStack, Icon, Text } from "@chakra-ui/react";
-import React from "react";
-import { IconBase, IconType } from "react-icons";
+import { IconType } from "react-icons";
+import {
+  FaWindows,
+  FaPlaystation,
+  FaXbox,
+  FaApple,
+  FaAndroid,
+  FaLinux,
+} from "react-icons/fa";
+import { MdPhoneIphone } from "react-icons/md";
+import { SiNintendo } from "react-icons/si";
+import { BsGlobe } from "react-icons/bs";
+import { IoMdBrowsers } from "react-icons/io";
+import { Platform } from "../hooks/usePlateforms";
 
 interface Props {
-  platforms: string[];
+  platforms: Platform[];
 }
 
 const PlatformIconList = ({ platforms }: Props) => {
   const iconMap: { [key: string]: IconType } = {
-    "PC (Windows)": FaWindows,
-    "Web Browser": IoMdBrowsers,
+    pc: FaWindows,
+    playstation: FaPlaystation,
+    xbox: FaXbox,
+    nintendo: SiNintendo,
+    mac: FaApple,
+    linux: FaLinux,
+    ios: MdPhoneIphone,
+    web: BsGlobe,
+    android: FaAndroid,
   };
 
   return (
     <HStack marginY={1}>
       {platforms.map((platform) => (
-        <Icon as={iconMap[platform]} color="gray.500" key={platform} />
+        <Icon as={iconMap[platform.slug]} color="grey.500"></Icon>
       ))}
     </HStack>
   );

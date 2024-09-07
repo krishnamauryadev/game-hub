@@ -1,12 +1,16 @@
+import { AxiosRequestConfig, CanceledError } from "axios";
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
-import { AxiosRequestConfig, CanceledError } from "axios";
 
 const useData = <T>(
   endPoint: string,
   requestConfig?: AxiosRequestConfig,
   deps?: any[]
 ) => {
+  interface AxiosGameReponse {
+    count: number;
+    results: T[];
+  }
   const [data, setData] = useState<T[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -16,9 +20,12 @@ const useData = <T>(
       const constroller = new AbortController();
       setIsLoading(true);
       apiClient
-        .get<T[]>(endPoint, { signal: constroller.signal, ...requestConfig })
+        .get<AxiosGameReponse>(endPoint, {
+          signal: constroller.signal,
+          ...requestConfig,
+        })
         .then((res) => {
-          setData(res.data);
+          setData(res.data.results);
           setIsLoading(false);
         })
         .catch((err) => {

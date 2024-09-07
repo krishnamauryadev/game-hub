@@ -6,8 +6,8 @@ import { useState } from "react";
 import PlatformSelector from "./components/PlatformSelector";
 
 function App() {
-  const [selectedGenre, setSelectedGenre] = useState<String>("");
-  const [selectedPlatform, setSelectedPlatform] = useState<String>("");
+  const [selectedGenre, setSelectedGenre] = useState<number>();
+  const [selectedPlatform, setSelectedPlatform] = useState<number>();
   return (
     <Grid
       templateAreas={{
