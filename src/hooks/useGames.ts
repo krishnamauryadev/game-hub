@@ -1,3 +1,4 @@
+import { GameQuery } from "../App";
 import useData from "./useData";
 import { Platform } from "./usePlateforms";
 
@@ -8,23 +9,8 @@ export interface Game {
   parent_platforms: { platform: Platform }[];
 }
 
-const useGames = (
-  selectedGenre?: number,
-  selectedPlatform?: number,
-  searchInput?: String
-) => {
-  const categoryParam = selectedGenre ? { genres: selectedGenre } : "";
-  const platformParam = selectedPlatform
-    ? { parent_platforms: selectedPlatform }
-    : "";
-  const search = searchInput ? searchInput : "";
-  const params = { ...categoryParam, ...platformParam, search };
-
-  return useData<Game>("/games", { params: params }, [
-    selectedGenre,
-    selectedPlatform,
-    searchInput,
-  ]);
+const useGames = (gameQuery: GameQuery) => {
+  return useData<Game>("/games", { params: gameQuery }, [gameQuery]);
 };
 
 export default useGames;

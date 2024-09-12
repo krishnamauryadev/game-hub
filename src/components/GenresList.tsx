@@ -12,7 +12,7 @@ import {
 import useGenres from "../hooks/useGenres";
 
 interface Props {
-  selectedGenre: number | undefined;
+  selectedGenre: number | null;
   onSelectGenre: (genre: number) => void;
 }
 
