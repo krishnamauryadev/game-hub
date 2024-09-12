@@ -15,3 +15,6 @@ If you have any questions or feedback, feel free to reach out:
 
 Email: krishna.maurya.dev@gmail.com
 GitHub Issues: Submit an issue
+
+<!-- ![QR Code Description](URL_OF_YOUR_QR_CODE_IMAGE)
+ -->

@@ -8,16 +8,22 @@ export interface Game {
   parent_platforms: { platform: Platform }[];
 }
 
-const useGames = (selectedGenre?: number, selectedPlatform?: number) => {
+const useGames = (
+  selectedGenre?: number,
+  selectedPlatform?: number,
+  searchInput?: String
+) => {
   const categoryParam = selectedGenre ? { genres: selectedGenre } : "";
   const platformParam = selectedPlatform
     ? { parent_platforms: selectedPlatform }
     : "";
-  const params = { ...categoryParam, ...platformParam };
+  const search = searchInput ? searchInput : "";
+  const params = { ...categoryParam, ...platformParam, search };
 
   return useData<Game>("/games", { params: params }, [
     selectedGenre,
     selectedPlatform,
+    searchInput,
   ]);
 };
 

@@ -8,6 +8,7 @@ import PlatformSelector from "./components/PlatformSelector";
 function App() {
   const [selectedGenre, setSelectedGenre] = useState<number>();
   const [selectedPlatform, setSelectedPlatform] = useState<number>();
+  const [searchInput, setSearchInput] = useState<String>();
   return (
     <Grid
       templateAreas={{
@@ -20,7 +21,7 @@ function App() {
       }}
     >
       <GridItem area="nav">
-        <NavBar></NavBar>
+        <NavBar onSearch={(searchInput) => setSearchInput(searchInput)} />
       </GridItem>
       <Show above="lg">
         <GridItem area="aside" paddingX={5}>
@@ -38,6 +39,7 @@ function App() {
         <GameGrid
           selectedPlatform={selectedPlatform}
           selectedGenre={selectedGenre}
+          searchInput={searchInput}
         ></GameGrid>
       </GridItem>
     </Grid>
