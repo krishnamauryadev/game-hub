@@ -3,6 +3,7 @@ import axios, { AxiosRequestConfig } from "axios";
 export interface AxiosGameReponse<T> {
   count: number;
   results: T[];
+  next: number;
 }
 
 const axiosInstance = axios.create({
