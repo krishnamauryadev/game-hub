@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import apiClient from "../services/api-client";
-import { AxiosGameReponse } from "./useData";
+import { AxiosGameReponse } from "../services/api-client";
 import genres from "../data/genres";
 interface Genres {
   id: number;
