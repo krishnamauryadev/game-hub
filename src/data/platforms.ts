@@ -1,4 +1,5 @@
 export default {
+  next: 1,
   count: 51,
   results: [
     {
