@@ -1,5 +1,7 @@
+import { useQuery } from "@tanstack/react-query";
 import { GameQuery } from "../App";
-import useData from "./useData";
+import apiClient from "../services/api-client";
+import { AxiosGameReponse } from "../services/api-client";
 import { Platform } from "./usePlateforms";
 
 export interface Game {
@@ -12,7 +14,15 @@ export interface Game {
 }
 
 const useGames = (gameQuery: GameQuery) => {
-  return useData<Game>("/games", { params: gameQuery }, [gameQuery]);
+  return useQuery<AxiosGameReponse<Game>, Error>({
+    queryKey: ["games", gameQuery],
+    queryFn: () => {
+      return apiClient
+        .get<AxiosGameReponse<Game>>("/games", { params: gameQuery })
+        .then((res) => res.data);
+    },
+    staleTime: 24 * 60 * 60 * 1000, //24h
+  });
 };
 
 export default useGames;

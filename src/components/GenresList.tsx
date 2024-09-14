@@ -17,16 +17,13 @@ interface Props {
 }
 
 const GenresList = ({ selectedGenre, onSelectGenre }: Props) => {
-  // const { data: games, error, isLoading } = useGames();
   const { data: genres, error, isLoading } = useGenres();
-  // const uniqueGenresSet = new Set(games.map((game) => game.genre));
-  // const uniqueGenresArray = Array.from(uniqueGenresSet);
 
   if (error) return null;
   if (isLoading) return <Spinner />;
   return (
     <List>
-      {genres.map((genre) => (
+      {genres?.results.map((genre) => (
         <ListItem paddingY="5px" key={genre.id}>
           <HStack>
             <Image
