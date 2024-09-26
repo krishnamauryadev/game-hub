@@ -1,36 +1,35 @@
-import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
-import { BsChevronDown } from "react-icons/bs";
-import useGames from "../hooks/useGames";
-import usePlatforms from "../hooks/usePlateforms";
+import {
+  Button,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList
+} from '@chakra-ui/react';
+import { BsChevronDown } from 'react-icons/bs';
+import usePlatform from '../hooks/usePlatform';
+import usePlatforms from '../hooks/usePlatforms';
+import useGameQueryStore from '../store';
 
-interface Props {
-  onPlatformSelect: (platform: number) => void;
-  selectedPlatform: number | null;
-}
+const PlatformSelector = () => {
+  const { data, error } = usePlatforms();
+  const setSelectedPlatformId = useGameQueryStore(s => s.setPlatformId);
+  const selectedPlatformId = useGameQueryStore(s => s.gameQuery.platformId);
+  const selectedPlatform = usePlatform(selectedPlatformId);
 
-const PlatformSelector = ({ onPlatformSelect, selectedPlatform }: Props) => {
-  const { data: platforms, error, isLoading } = usePlatforms();
-  // const { data: games, error, isLoading } = useGames();
-  // const uniquePlatformSet = new Set(games.map((game) => game.platform));
-  // const uniquePlatformArray = Array.from(uniquePlatformSet);
-  // const platforms: { [key: string]: String } = {
-  //   "Web Browser": "browser",
-  //   "PC (Windows)": "pc",
-  // };
+  if (error) return null;
 
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-        {selectedPlatform
-          ? platforms?.results.find(
-              (platform) => platform.id == selectedPlatform
-            )?.name
-          : "Platforms"}
+        {selectedPlatform?.name || 'Platforms'}
       </MenuButton>
       <MenuList>
-        {platforms?.results.map(({ id, name }) => (
-          <MenuItem onClick={() => onPlatformSelect(id)} key={id}>
-            {name}
+        {data?.results.map((platform) => (
+          <MenuItem
+            onClick={() => setSelectedPlatformId(platform.id)}
+            key={platform.id}
+          >
+            {platform.name}
           </MenuItem>
         ))}
       </MenuList>
